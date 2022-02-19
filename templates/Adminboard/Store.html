@@ -1,0 +1,53 @@
+{% extends 'adminboard/index.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/updateproduct.css' %}">{% endblock %}
+{%block content%}
+
+ 
+<div class="container">
+   
+    <div class="row">
+   
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h6 class="panel-title">Customers </h6>
+   
+        </div>
+   
+        <table class="table table-hover table-striped table-bordered" id="dev-table">
+          <thead>
+   
+            <tr>
+              <th>Name</th>
+              <th>category</th>
+              <th>slug</th>
+              <th>Image</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Available</th>
+       
+              
+            </tr>
+          </thead>
+          {% for Product in customers %}
+          <tr>
+            <td> {{Product.name}}</td>
+            <td>{{Product.category}}</td>
+            <td>{{Product.slug}}</td>
+            <td>{{product.image.url}}</td>
+            <td>{{Product.description}}</td>
+            <td>{{Product.price}}</td>
+            <td>{{Product.available}}</td>
+            <td><a class="btn btn-success btn-xs" href="{% url 'editproduct' Product.id%}"><span class="glyphicon glyphicon-ok">update</span></a>
+           <a class="btn btn-danger btn-xs" href="#"><span class="glyphicon glyphicon-trash">delete</span></a></td>
+          </tr>
+   
+          {% endfor %}
+        </table>
+      </div>
+   
+    </div>
+  </div>
+
+
+ {% endblock content %}

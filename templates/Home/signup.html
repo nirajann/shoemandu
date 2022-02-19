@@ -1,0 +1,73 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="vh-100 bg-image mt-5" style="background-image: {% static 'images/background.png' %}">
+  <div class="mask d-flex align-items-center  custom-5">
+    <div class="container ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-10 ">
+          <div class="card"   >
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5 p-4 mb-5 bg-success text-white rounded">Create an account</h2>
+
+              <form action="" method="POST" class="text-center">
+                {% csrf_token %}
+                <h2 class="title" class="p-3 mb-2 bg-primary text-white">SignUp</h2>
+                <br>
+                {% for message in messages  %}
+                  <p class= "createdmesseges">{{message}}</p>
+                {% endfor %}
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-user mt-0"></i>
+                  <input type="text" name="username" class="form-control text-center" placeholder="Username" required/>
+                </div>
+                <br>
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-user mt-0"></i>
+                  <input type="text" name="firstname" class="form-control text-center" placeholder="firstname" required/>
+                </div>
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-user mt-0"></i>
+                  <input type="text" name="lastname" class="form-control text-center" placeholder="Lastname" required/>
+                </div>
+                <div class="col-5 d-inline-flex p-3">
+                  <i class="fas fa-lock"></i>
+                  <input type="email" name="email" class="form-control text-center" placeholder="Email" required/>
+                </div>
+                <br>
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-lock"></i>
+                  <input type="text" name="address" class="form-control text-center" placeholder="address" required/>
+                  
+                </div>
+                <br>
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-lock"></i>
+                  <input type="text" name="phone" class="form-control text-center" placeholder="Phone" required/>
+                  
+                </div>
+                <br>
+                <div class="col-5 d-inline-flex">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" name="password" class="form-control text-center" placeholder="Password" required/>
+                </div>
+                <br>
+                <button  type="submit" value="register" class="btn btn-success pl-5 pr-5 rounded">Register</button>
+
+              </form>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login" class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock content %}

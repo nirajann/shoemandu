@@ -1,0 +1,28 @@
+{% extends 'Home/base.html' %}
+
+{% block title %}Search {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Search Results for <span class="text-info">"{{request.GET.keyword}}"</span></h3>
+            <hr>
+            {% for product in products %}
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{product.image.url}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-9">
+                    <h4 class="text-light">{{product.name}}</h4>
+                    <p class="text-light">{{product.description|truncatewords:50}}</p>
+                    <p class="text-light">Price: {{product.price}}</p>
+                    <a href="/login" class="btn btn-success p-3">BUY NOW</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">{% endblock %}
+{% block content %}
+
+<div class="container p-3">
+<h6 class="h1 btn-success pt-2 pb-2" style='text-align:center;'>CART<h6>
+<div class="card p-3">
+
+    <div class="row ">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image </th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Available</th>
+                            
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th>Unit Price</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% with carts=cart.list  %}
+                    {% for cart in carts %}
+               
+                        <tr>
+                            <td> <img src="{{cart.obj.image.url}}" alt="" height="35px"/> </td>
+                            <td>{{cart.obj.name}}</td>
+                            <td>In stock</td>
+                            <td>
+                                <form action="{% url 'update_cart' cart.id %}" method="post" style="margin-left: -24px; margin-right: -24px;">
+                                    {% csrf_token %}
+                                    {{form}}
+                                    <input type="number" name="quantity" placeholder="1" style="width: 68px;" value="{{cart.quantity}}"/>
+                                    <button class="btn btn-success btn-sm pb-2 pt-2" type="submit">
+                                    Update</button>
+                                </form>
+                            
+                            </td>
+                            <td>Rs.{{cart.obj.price}}</td>
+                            <td class="text-right">Rs. {{cart.price}}</td>
+                            <td class="text-right">
+
+                                <form action="{% url 'delete_cart' cart.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-sm btn-danger p-2"  type="submit">   DELETE </button> 
+                            
+                                </form>
+                            </td>
+                        </tr>   
+                    
+                     {% endfor %}
+                 
+                   
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>Rs {{ cart.get_total_amount }}</strong></td>
+                        </tr>
+                        {% endwith %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <a class="btn btn-outline-info" href="/store">Continue Shopping</a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <a class="btn  btn-outline-success " href="{% url 'orders:order' %}">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+<br>
+{% block section %}
+{% endblock section %}

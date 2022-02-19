@@ -1,0 +1,65 @@
+{% extends 'adminboard/index.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">{% endblock %}
+{%block content%}
+  
+  <form method="POST" action='/updateproduct/{{products.id}}'>
+    {% csrf_token %}
+    <div class="container register-form">
+        {% for message in messages  %}
+                      <p class= "createdmesseges">{{message}}</p>
+        {% endfor %}
+      <div class="form pb-3">
+        <div class="btn-success h1">
+          <p class="text-center" >UPDATE PRODUCT DETAILS</p>
+        </div>
+  
+        <div class="form-content pt-5">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Category:</label>
+                  <select class="form-control" name="category" id="cars" name="category" readonly>
+                    <option value="">{{products.category}}</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Name:</label>
+                <input  class="form-control" name="name" value="{{products.name}}"/>
+              </div>
+              <div class="form-group">
+                <label>Slug:</label>
+                <input  class="form-control" name="slug" value="{{products.slug}}" readonly/>
+              </div>
+              <div class="form-group">
+                <label class='d-inline-block'>Image :</label>
+                <input class="d-inline-block form-control btn btn-outline-light" type="file" name="image" value="" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Description:</label>
+                <textarea  class="form-control" name="description" placeholder="{{products.description}}" required ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Price :</label>
+                <input  class="form-control" name="price" value="{{products.price}}"required/>
+              </div>
+              <div class="form-group">
+                <label>Available :</label>
+                <input class="form-control"  type="checkbox" id="" name="available" />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+        </div>
+      </div>
+    </div>
+  
+  </form>
+
+
+{% endblock content%}

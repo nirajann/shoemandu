@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center p-5">
+    <div class="card p-3 py-4 pr-5">
+        <div class="text-center"> <img src="https://i.imgur.com/stD0Q19.jpg" width="100" class="rounded-circle">
+            <h2 class="mt-2">{{customers.username}}</h2> <span class="mt-1 clearfix pr-5">{{customers.address}}</span>
+            <div class="row mt-3 mb-3 pl-5">
+                <div class="col-md-5 pl-5">
+                    <h3 class="mt-2">Firstname: {{customers.firstname}}</h3>
+                </div>
+                <div class="col-md-5">
+                    <h3 class="mt-2">Lastname: {{customers.lastname}}</h3>
+                </div>
+                
+            </div>
+            <div class="row mt-3 mb-3 pl-5">
+                <div class="col-md-5 ">
+                    <h3 class="mt-4">EMAIL: {{customers.email}}</h3>
+                </div>
+                <div class="col-md-5">
+                    <h3 class="mt-4">Phone: {{customers.phone}}</h3>
+                </div>
+                
+            </div>
+            <hr class="line"> 
+            <div class="profile mt-5"> <button class="profile_button px-5">LogOut</button> </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block section %}
+
+{% endblock section %}
+
